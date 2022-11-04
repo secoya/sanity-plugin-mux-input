@@ -60,7 +60,7 @@ function getSecrets(): Promise<{isInitialSetup: boolean; needsSetup: boolean; se
 
 interface Props {
   document: SanityDocument
-  value?: null | {asset?: {_type: 'reference'; _ref: string}}
+  value?: null | {asset?: {_type: 'reference'; _ref: string}; _type: 'mux.video'}
   type: any
   level: any
   markers: any
@@ -274,8 +274,8 @@ export default withDocument(
       const {_id} = result
       onChange(
         PatchEvent.from([
-          setIfMissing({asset: {}}),
-          set({_type: 'reference', _ref: _id}, ['asset']),
+          setIfMissing({asset: {}, _type: 'mux.video'}),
+          set({asset: {_type: 'reference', _ref: _id}, _type: 'mux.video'}),
         ])
       )
       this.setState({assetDocument: result.document}, () => {
@@ -376,8 +376,8 @@ export default withDocument(
 
       onChange(
         PatchEvent.from([
-          setIfMissing({asset: {}}),
-          set({_type: 'reference', _ref: asset._id}, ['asset']),
+          setIfMissing({asset: {}, _type: 'mux.video'}),
+          set({asset: {_type: 'reference', _ref: asset._id}, _type: 'mux.video'}),
         ])
       )
 
